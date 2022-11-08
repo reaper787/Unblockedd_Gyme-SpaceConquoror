@@ -10,14 +10,14 @@ public class Movement : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
-    
+
     [Header("jumping")]
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump = true;
 
-    PlayerControlls controlls;
+   
 
 
 
@@ -63,8 +63,8 @@ public class Movement : MonoBehaviour
             moveSpeed = crouchSpeed;
             state = moveState.crouching;
         }
-        
-        if(grounded && Input.GetKey(SprintKey))
+
+        if (grounded && Input.GetKey(SprintKey))
         {
             state = moveState.sprinting;
             moveSpeed = sprintSpeed;
@@ -80,12 +80,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-     void Awake()
-    {
-        controlls = new PlayerControlls();
-        controlls.Gameplay.Jump.performed += ctx => jump();
-
-    }
+    
     private void FixedUpdate()
     {
         movePlayer();
@@ -121,7 +116,7 @@ public class Movement : MonoBehaviour
             Invoke(nameof(resetJump), jumpCooldown);
         }
         if (Input.GetKey(crouchKey))
-        { 
+        {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 2f, ForceMode.Force);
         }
@@ -133,15 +128,15 @@ public class Movement : MonoBehaviour
         }
 
     }
-    
+
     private void movePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
-        if(grounded)
+
+        if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        else if(!grounded)
+        else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * airMultiplier * 10f, ForceMode.Force);
     }
 
@@ -149,19 +144,19 @@ public class Movement : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limetedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limetedVel.x, rb.velocity.y, limetedVel.z);
         }
 
-       
+
     }
     private void jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        
+
     }
     private void resetJump()
     {
