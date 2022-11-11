@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump = true;
 
-   
+
 
 
 
@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    
+
     private void FixedUpdate()
     {
         movePlayer();
