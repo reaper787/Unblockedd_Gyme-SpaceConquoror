@@ -33,7 +33,7 @@ public class ThirdPersonMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f , vertical).normalized;
-        Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
        
         if (grounded && velocity.y < 0)
         {
