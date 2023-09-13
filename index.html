@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Space Empire Builder</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Space Empire Builder</h1>
+    <div id="game-container">
+        <!-- Instructions Screen -->
+        <div id="instructions" style="display: block;">
+            <h2>Instructions</h2>
+            <p>Welcome to the Space Empire Builder!</p>
+            <p>Conquer planets, manage resources, and battle enemy AIs to build your empire.</p>
+            <p>Press the screen to start!</p>
+        </div>
+
+        <!-- Game Screen (hidden initially) -->
+        <div id="game-screen" style="display: none;">
+            <div id="resources">Resources: 1000</div>
+            <div id="planets">Planets: 1</div>
+            <div id="army">Your Army: 100</div>
+            <div id="enemy-army-1">Enemy 1 Army: 150</div>
+            <div id="enemy-army-2">Enemy 2 Army: 120</div>
+
+            <!-- Rest of your game UI -->
+            <!-- ... -->
+
+            <div id="notification-container"></div>
+            <button onclick="restartGame()">Restart Game</button>
+        </div>
+
+        <!-- Battle Screen (hidden initially) -->
+        <div id="battle-screen" style="display: none;">
+            <!-- Battle UI -->
+            <!-- ... -->
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
